@@ -1,6 +1,6 @@
 /**********************************************************************************
 **                                                                               ** 
-**                            Projecte 1 / Programa 3                            **                                                                               
+**                            Projecte 1 / Programa 4                            **                                                                               
 **                                                                               **                                                                                                        
 **********************************************************************************/
 
@@ -9,15 +9,16 @@
 
 
 //***********  Variables  *********************************************************
-int led []= {5,6,7,8,9,10,11,12};
+int ledPin[]= {5,6,7,8};
 int i = 0;
+byte num = 0;
 
 //La funció Setup només s'executa un cop. Quan la placa s'encen o es fa reset.
 void setup() {
   // Configració del pins de sortida
-  for (i = 0; i<21; i++)
+  for (i = 0; i<4; i++)
   {
-    pinMode (led[i], OUTPUT);
+    pinMode (ledPin[i], OUTPUT);
   }
   
 }
@@ -25,19 +26,10 @@ void setup() {
 
 //La funció Loop es va repetin cada cop.
 void loop() {
-  for (i = 0; i<8; i++)
+  num = num + 1;
+  for (i = 0; i<4; i++)
   {
-    digitalWrite (led[i], HIGH);
-    delay(40);
-    digitalWrite (led[i], LOW);
-    delay(40);
+    digitalWrite(ledPin[i], bitRead(num, i));
   }
-  
-  for (i = 7; i>=0; i--)
-  {
-    digitalWrite (led[i], HIGH);
-    delay(40);
-    digitalWrite (led[i], LOW);
-    delay(40);
-  }
+  delay(1000);
 }
